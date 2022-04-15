@@ -1,24 +1,24 @@
 import { Router } from "express";
-
+import { jwtTokenValidator } from "../middlewares/jwtTokenValidator";
 const gameRouter = Router();
 const GameController = require('./../controllers/game.controller');
 
 //get all games
-gameRouter.get('/game', GameController.getGames);
+gameRouter.get('/game', jwtTokenValidator, GameController.getGames);
 
 //get single game by id
-gameRouter.get('/game/:id', GameController.getGameById);
+gameRouter.get('/game/:id', jwtTokenValidator, GameController.getGameById);
 
 // Add a game
-gameRouter.post('/game', GameController.createGame);
+gameRouter.post('/game', jwtTokenValidator, GameController.createGame);
 
 //update game
-gameRouter.put('/game/:id', GameController.updateGame);
+gameRouter.put('/game/:id', jwtTokenValidator, GameController.updateGame);
 
 //delete game
-gameRouter.delete('/game/:id', GameController.deleteGame);
+gameRouter.delete('/game/:id', jwtTokenValidator, GameController.deleteGame);
 
 
 //get remainig cards
-gameRouter.get('/game/remainings/:id', GameController.getRemainingCardsById);
+gameRouter.get('/game/remainings/:id', jwtTokenValidator, GameController.getRemainingCardsById);
 export { gameRouter };
