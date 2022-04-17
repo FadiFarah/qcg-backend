@@ -43,15 +43,21 @@ exports.createRoom = async function (room: room) {
 
 exports.updateRoom = async function (id: any, newRoom: room) {
     try {
-        var room = await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});
-        axios.post(Endpoints.RoomsListUpdated)
-        .then(() => {
-            return room;
-        });
+        console.log(newRoom);
+        
+        await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});
+        // return room;
     } 
     catch (e) {
         // Log Errors
         throw Error('Error while Paginating Users')
+    }
+    finally {
+        const bodyDetails = {
+            roomId: id
+        };
+        await axios.post(Endpoints.RoomsListUpdated);
+        await axios.post(Endpoints.GameDataUpdated, bodyDetails)
     }
 }
 
