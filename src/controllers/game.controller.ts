@@ -63,3 +63,13 @@ exports.getRemainingCardsById = async function (req: any, res: any, next: any) {
         return res.status(400).json({ status: 400, message: e.message });
     }
 }
+exports.getGameByRoomId = async function (req: any, res: any, next: any) {
+    var id = req.params.id;
+    try {
+        var game = await GameService.getGameByRoomId({roomId: id});
+        return res.status(200).json({ status: 200, data: game, message: "" });
+    } 
+    catch (e: any) {
+        return res.status(400).json({ status: 400, message: e.message });
+    }
+}

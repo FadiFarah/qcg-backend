@@ -3,13 +3,9 @@ import { Schema, model } from "mongoose";
 const { CardSchema } = require("./card.model");
 
 const PlayerSchema = new Schema({
-    gameId: {
-        type: String,
-        required: true,
-    },
     userId: {
         type: String,
-        required: true
+        required: true,
     },
     isWin: {
         type: Boolean,
@@ -18,7 +14,28 @@ const PlayerSchema = new Schema({
     cards: {
         type: [CardSchema],
         required: true
+    },
+    isReady : {
+        type: Boolean,
+        required: true
+    },
+    isMaster : {
+        type: Boolean,
+        required: true
+    },
+    isTurn: {
+        type: Boolean,
+        required: true
+    },
+    points: {
+        type: Boolean,
+        required: true
     }
+
+
+    
+    
+    
 });
 
 const PlayerModel = model("player", PlayerSchema);

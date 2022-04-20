@@ -9,6 +9,9 @@ gameRouter.get('/game', jwtTokenValidator, GameController.getGames);
 //get single game by id
 gameRouter.get('/game/:id', jwtTokenValidator, GameController.getGameById);
 
+//get room id
+gameRouter.get('/game/room/:id', jwtTokenValidator,GameController.getGameByRoomId);
+
 // Add a game
 gameRouter.post('/game', jwtTokenValidator, GameController.createGame);
 

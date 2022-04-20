@@ -65,3 +65,15 @@ exports.getRemainingCardsById= async function (id: any) {
         // Log Errors
         throw Error('Error while Paginating Users')
     }}
+
+    exports.getGameByRoomId= async function (query:any) {
+        try {
+            var game = await GameModel.find(query);
+            return game;
+        } 
+        catch (e) {
+            // Log Errors
+            throw Error('Error while getting game by room Id')
+        }
+        
+    }
