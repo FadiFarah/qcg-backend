@@ -23,7 +23,7 @@ exports.getRoomById = async function (req: any, res: any, next: any) {
 
 exports.createRoom = async function (req: any, res: any, next: any) {
     try {
-        var room = await RoomService.createRoom(req.body);
+        var room = await RoomService.createRoom(req.body);                
         return res.status(200).json({ status: 200, data: room, message: "Succesfully created Room" });
     } 
     catch (e: any) {
@@ -35,6 +35,8 @@ exports.updateRoom = async function (req: any, res: any, next: any) {
     var id = req.params.id;
     try {
         var room = await RoomService.updateRoom(id, req.body);
+        console.log(room);
+        
         return res.status(200).json({ status: 200, data: room, message: "Succesfully updated Room" });
     } 
     catch (e: any) {

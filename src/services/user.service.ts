@@ -33,7 +33,7 @@ exports.createUser = async function (newUser: user) {
             return user;
         }
     } 
-    catch (e) {
+    catch (error) {
         // Log Errors
         throw Error('Error while Paginating Users')
     }
@@ -46,7 +46,7 @@ exports.getUserByEmail = async function (query: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while getting User')
+        throw Error('Error while getting a User by email')
     }
 }
 

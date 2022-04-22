@@ -16,6 +16,8 @@ export interface user extends baseEntity{
 
 export interface player extends baseEntity {
     userId: string;
+    picture: string;
+    fullName: string
     isWin: boolean;
     cards: card[];
     isReady: boolean;
@@ -43,11 +45,11 @@ export interface game extends baseEntity {
 }
 
 export interface room extends baseEntity {
-    roomMaster: user;
     roomName: string;
     roomPassword: string;
-    category: category;
-    currentUsers: user[];
+    categoryName: string;
+    remainingCards: card[];
+    players: player[];
     isWaiting: boolean;
     isPublic: boolean;
 }
