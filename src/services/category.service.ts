@@ -9,30 +9,32 @@ exports.getCategories = async function (query: any, page: any, limit: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users');
+        throw Error('Error while Paginating categories');
     }
 }
 
 exports.getCategoryById = async function (id: any) {
     try {
-        var category = await CategoryModel.findById(id)
+        var category = await CategoryModel.findById(id);
         return category;
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while getting category by id')
     }
 }
 
 exports.createCategory = async function (category: category) {
     const data: any = new CategoryModel(category);
-    await data.save()
+    var categoryResult = await data.save()
         .then((result: any) => {
                 return result;
             })
-            .catch((err: any) => {
-                return err;
+            .catch((error: any) => {
+                throw Error(error);
             });
+
+    return categoryResult;
 }
 
 exports.updateCategory = async function (id: any, newCategory: category) {
@@ -42,16 +44,18 @@ exports.updateCategory = async function (id: any, newCategory: category) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while updating category');
     }
 }
 
 exports.deleteCategory = async function (id: any) {
-    await CategoryModel.findByIdAndDelete(id)
+    var categoryResult = await CategoryModel.findByIdAndDelete(id)
         .then((result: category) => {
             return result;
         })
         .catch((error: any) => {
-            return error;
+            throw Error(error);
         });
+
+    return categoryResult;
 }

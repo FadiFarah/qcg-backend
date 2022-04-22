@@ -1,27 +1,27 @@
 import { Schema, model } from "mongoose";
 
-const { UserSchema } = require("./user.model");
-const { CategorySchema } = require("./category.model");
+const { PlayerSchema } = require("./player.model");
+const { CardSchema } = require("./card.model");
 
 const RoomSchema = new Schema({
-    roomMaster: {
-        type: UserSchema,
-        required: true
-    },
     roomName: {
         type: String,
         required: true,
     },
     roomPassword: {
         type: String,
-        required: true,
+        required: false,
     },
-    category: {
-        type: CategorySchema,
+    categoryName: {
+        type: String,
         required: false
     },
-    currentUsers: {
-        type: [UserSchema],
+    remainingCards: {
+        type: [CardSchema],
+        required: false
+    },
+    players: {
+        type: [PlayerSchema],
         required: false
     },
     isWaiting: {

@@ -7,6 +7,14 @@ const PlayerSchema = new Schema({
         type: String,
         required: true,
     },
+    picture: {
+        type: String,
+        required: false
+    },
+    fullName: {
+        type: String,
+        required: false
+    },
     isWin: {
         type: Boolean,
         required: true
@@ -31,11 +39,6 @@ const PlayerSchema = new Schema({
         type: Boolean,
         required: true
     }
-
-
-    
-    
-    
 });
 
 const PlayerModel = model("player", PlayerSchema);
