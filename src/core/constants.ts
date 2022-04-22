@@ -13,5 +13,5 @@ export class Endpoints {
     private static _signalRGameEndpointPrefix: string = environment.signalRGameEndpointPrefix;
 
     public static RoomsListUpdated: string = `${Endpoints._signalRRoomsListEndpointPrefix}/roomsListUpdated`;
-    public static GameDataUpdated: string = `${Endpoints._signalRRoomsListEndpointPrefix}/gateDataUpdated`;
+    public static GameDataUpdated: string = `${Endpoints._signalRGameEndpointPrefix}/gameDataUpdated`;
 }

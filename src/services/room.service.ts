@@ -11,7 +11,7 @@ exports.getRooms = async function (query: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users');
+        throw Error('Error while paginating rooms');
     }
 }
 
@@ -20,56 +20,56 @@ exports.getRoomById = async function (id: any) {
         var room = await RoomModel.findById(id);
         return room;
     } 
-    catch (e) {
+    catch (error) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while getting a room by id')
     }
 }
 
 exports.createRoom = async function (room: room) {
     const data: any = new RoomModel(room);
     
-    await data.save()
-        .then((result: any) => {
-                axios.post(Endpoints.RoomsListUpdated)
+    var roomResult = await data.save()
+        .then((result: any) => {            
+                return axios.post(Endpoints.RoomsListUpdated)
                 .then(() => {
                     return result;
                 });
             })
         .catch((err: any) => {
-            return err;
+            throw Error(err);
         });
+        
+    return roomResult;
 }
 
 exports.updateRoom = async function (id: any, newRoom: room) {
     try {
-        console.log(newRoom);
-        
-        await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});
-        // return room;
-    } 
-    catch (e) {
-        // Log Errors
-        throw Error('Error while Paginating Users')
-    }
-    finally {
+        var room = await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});  
         const bodyDetails = {
             roomId: id
         };
         await axios.post(Endpoints.RoomsListUpdated);
-        await axios.post(Endpoints.GameDataUpdated, bodyDetails)
+        await axios.post(Endpoints.GameDataUpdated, bodyDetails);      
+        return room;
+    } 
+    catch (error) {
+        // Log Errors
+        throw Error('Error while updating a room')
     }
 }
 
 exports.deleteRoom = async function (id: any) {
-    RoomModel.findByIdAndDelete(id)
+    var roomResult = RoomModel.findByIdAndDelete(id)
         .then((result: room) => {
-            axios.post(Endpoints.RoomsListUpdated)
+            return axios.post(Endpoints.RoomsListUpdated)
             .then(() => {
                 return result;
             });
         })
         .catch((error: any) => {
-            return error;
+            throw Error(error);
         });
+
+    return roomResult;
 }

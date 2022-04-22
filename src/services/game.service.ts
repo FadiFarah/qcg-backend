@@ -9,7 +9,7 @@ exports.getGames = async function (query: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users');
+        throw Error('Error while Paginating games');
     }
 }
 
@@ -20,19 +20,21 @@ exports.getGameById = async function (id: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while getting a game by id');
     }
 }
 
 exports.createGame = async function (game: game) {
     const data: any = new GameModel(game);
-    await data.save()
+    var gameResult = await data.save()
         .then((result: any) => {
                 return result;
             })
-            .catch((err: any) => {
-                return err;
+            .catch((error: any) => {
+                throw Error(error);
             });
+            
+    return gameResult;
 }
 
 exports.updateGame = async function (id: any, newGame: game) {
@@ -42,7 +44,7 @@ exports.updateGame = async function (id: any, newGame: game) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while updating a game')
     }
 }
 
@@ -63,7 +65,7 @@ exports.getRemainingCardsById= async function (id: any) {
     } 
     catch (e) {
         // Log Errors
-        throw Error('Error while Paginating Users')
+        throw Error('Error while getting remaining card of a game');
     }}
 
     exports.getGameByRoomId= async function (query:any) {
@@ -73,7 +75,7 @@ exports.getRemainingCardsById= async function (id: any) {
         } 
         catch (e) {
             // Log Errors
-            throw Error('Error while getting game by room Id')
+            throw Error('Error while getting game by room Id');
         }
         
     }
