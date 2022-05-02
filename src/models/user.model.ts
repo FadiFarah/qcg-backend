@@ -37,6 +37,10 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: false
+    },
+    score : {
+        type: Number,
+        required: false
     }
 });
 

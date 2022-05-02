@@ -7,8 +7,9 @@ exports.createUser = async function (newUser: user) {
         var user = await UserModel.find({email: newUser.email});
 
         if(user.length === 0) {
+            newUser.score = 0;
             const data: any = new UserModel(newUser);
-            await data.save()
+            return await data.save()
                 .then((result: any) => {
                     return result;
                 })
@@ -27,7 +28,8 @@ exports.createUser = async function (newUser: user) {
                 password: user[0].password,
                 locale: newUser.locale,
                 sub: newUser.sub,
-                picture: user[0].picture
+                picture: user[0].picture,
+                score: user[0].score
             }
             var user = await UserModel.findByIdAndUpdate(user[0]._id, tempUser, {new: true});
             return user;
@@ -72,6 +74,7 @@ exports.getAllUsers = async function (query: any) {
     }
 }
 
+
 exports.deleteUser = async function (id: any) {
     await UserModel.findByIdAndDelete(id)
         .then((result: user) => {
@@ -92,3 +95,4 @@ exports.updateUser = async function (id: any, newUser: user) {
         throw Error('Error while Paginating Users')
     }
 }
+

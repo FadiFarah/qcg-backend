@@ -21,4 +21,7 @@ userRouter.get('/user/:id', jwtTokenValidator, UserController.getUserById);
 //getAllUsers
 userRouter.get('/user', jwtTokenValidator, UserController.getAllUsers);
 
+//getUserLeaderboard
+userRouter.get('/user/top/leaderboard', jwtTokenValidator,UserController.getUsersLeaderboard)
+
 export { userRouter };
