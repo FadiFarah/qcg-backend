@@ -12,6 +12,7 @@ export interface user extends baseEntity{
     picture: string;
     sub: string;
     password: string;
+    score: number;
 }
 
 export interface player extends baseEntity {
