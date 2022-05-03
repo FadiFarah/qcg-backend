@@ -31,6 +31,10 @@ const RoomSchema = new Schema({
     isPublic: {
         type: Boolean,
         required: true
+    },
+    totalPoints: {
+        type: Number,
+        required: true
     }
 });
 

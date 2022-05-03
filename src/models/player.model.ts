@@ -38,6 +38,10 @@ const PlayerSchema = new Schema({
     points: {
         type: Number,
         required: false
+    },
+    isDonePlaying: {
+        type: Boolean,
+        required: false
     }
 });
 

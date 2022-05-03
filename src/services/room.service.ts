@@ -1,6 +1,6 @@
 import { room } from "../core/base.entities";
 import axios from "axios";
-import { Endpoints } from "../core/constants";
+import { Endpoints, Limitations } from "../core/constants";
 
 var { RoomModel } = require('./../models/room.model');
 
@@ -45,12 +45,15 @@ exports.createRoom = async function (room: room) {
 
 exports.updateRoom = async function (id: any, newRoom: room) {
     try {
-        var room = await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});  
+        var room = await RoomModel.findByIdAndUpdate(id, newRoom, {new: true});
         const bodyDetails = {
             roomId: id
         };
         await axios.post(Endpoints.RoomsListUpdated);
-        await axios.post(Endpoints.GameDataUpdated, bodyDetails);      
+        await axios.post(Endpoints.GameDataUpdated, bodyDetails);
+        if(newRoom.totalPoints === Limitations.categoryGroups) {
+            //TODO: on all quartet found do something...new signalR intergration to be added
+        }
         return room;
     } 
     catch (error) {

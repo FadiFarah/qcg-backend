@@ -25,6 +25,7 @@ export interface player extends baseEntity {
     isMaster: boolean;
     isTurn: boolean;
     points: number;
+    isDonePlaying: boolean;
 }
 
 export interface card extends baseEntity {
@@ -53,4 +54,5 @@ export interface room extends baseEntity {
     players: player[];
     isWaiting: boolean;
     isPublic: boolean;
+    totalPoints: number;
 }

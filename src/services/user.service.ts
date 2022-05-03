@@ -26,7 +26,7 @@ exports.createUser = async function (newUser: user) {
                 firstName: user[0].firstName,
                 lastName: user[0].lastName,
                 password: user[0].password,
-                locale: newUser.locale,
+                locale: user[0].locale,
                 sub: newUser.sub,
                 picture: user[0].picture,
                 score: user[0].score
