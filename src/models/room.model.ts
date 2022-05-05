@@ -32,6 +32,10 @@ const RoomSchema = new Schema({
         type: Boolean,
         required: true
     },
+    isGameOver: {
+        type: Boolean,
+        required: true
+    },
     totalPoints: {
         type: Number,
         required: true

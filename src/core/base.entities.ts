@@ -54,5 +54,6 @@ export interface room extends baseEntity {
     players: player[];
     isWaiting: boolean;
     isPublic: boolean;
+    isGameOver: boolean;
     totalPoints: number;
 }
