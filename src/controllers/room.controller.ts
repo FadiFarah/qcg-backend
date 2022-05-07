@@ -34,9 +34,7 @@ exports.createRoom = async function (req: any, res: any, next: any) {
 exports.updateRoom = async function (req: any, res: any, next: any) {
     var id = req.params.id;
     try {
-        var room = await RoomService.updateRoom(id, req.body);
-        console.log(room);
-        
+        var room = await RoomService.updateRoom(id, req.body);        
         return res.status(200).json({ status: 200, data: room, message: "Succesfully updated Room" });
     } 
     catch (e: any) {

@@ -57,3 +57,13 @@ export interface room extends baseEntity {
     isGameOver: boolean;
     totalPoints: number;
 }
+
+export interface language extends baseEntity {
+    isoCode: string;
+    translations: translation[];
+}
+
+interface translation {
+    isoCode: string;
+    title: string;
+}
